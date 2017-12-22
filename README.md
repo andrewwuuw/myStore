@@ -2,20 +2,19 @@ editor: https://pastebin.com/mt2EXpfy
 
 # my_store 新增 User, Store
 
-- User 1:1 Store 1:N Product
+- User 1:1 Store N:N Product
 
 ```
 $ rails g model User name email tel
-
-$ rails g model Store title address tel
-$ rails g model Store title address tel user_id:integer
 $ rails g model Store title address tel user:references
+$ rails g model Product name price:integer available:boolean store:references
+$ rails g model WareHouse store:references product:references
 
 $ rails g db:migrate
 ```
 
 
-# 新增User, Store
+# 新增User, Store, Product
 
 - Store 指定給 User
 
@@ -33,6 +32,11 @@ $ rails console
 > u2.save
 
 > u2.create_store(...)
+
+> s1 = Store.first
+> p1 = Product.new(...)
+> p2 = Product.new(...)
+> s1.products = [p1, p2]
 ```
 
 # 美化介面 = "Hirb-unicode"
