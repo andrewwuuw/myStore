@@ -5,6 +5,6 @@ end
 
 
 #products
-#products =
+#products= []
 #products.build(...)
 #products.create(...)
