@@ -1,24 +1,48 @@
-# README
+editor: https://pastebin.com/mt2EXpfy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# my_store 新增 User, Store
 
-Things you may want to cover:
+- User 1:1 Store 1:N Product
 
-* Ruby version
+```
+$ rails g model User name email tel
 
-* System dependencies
+$ rails g model Store title address tel
+$ rails g model Store title address tel user_id:integer
+$ rails g model Store title address tel user:references
 
-* Configuration
+$ rails g db:migrate
+```
 
-* Database creation
 
-* Database initialization
+# 新增User, Store
 
-* How to run the test suite
+- Store 指定給 User
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ rails console
 
-* Deployment instructions
+> u1 = User.new(name: "S1")
+> u1.save
 
-* ...
+> s1 = Store.new(...)
+> u1.store = s1
+
+> u2 = User.second
+> u2.build_store(...)
+> u2.save
+
+> u2.create_store(...)
+```
+
+# 美化介面 = "Hirb-unicode"
+
+- in Gemfile:
+```
+gem 'hirb-unicode'
+
+$ bundle install
+
+$ rails c
+> Hirb.enable
+```
